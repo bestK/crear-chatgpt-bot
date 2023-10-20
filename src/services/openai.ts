@@ -5,7 +5,6 @@ dotenv.config();
 
 const configuration = new Configuration({
     apiKey: process.env.CHATGPT_API_KEY,
-    // accessToken: process.env.CHATGPT_ACCESS_TOKEN,
-    basePath: 'https://ai.fakeopen.com/v1'
+    basePath: process.env.CHATGPT_BASE_URL
 });
 export const openai = new OpenAIApi(configuration);
