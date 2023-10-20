@@ -11,7 +11,7 @@ export const drawConversation = (container: Container) =>
         await conversation.run(i18n());
 
         await ctx.replyWithChatAction('typing');
-        await ctx.reply('Опиши, что мне нарисовать. Пока смогу тебя понять только на английском.');
+        // await ctx.reply('Опиши, что мне нарисовать. Пока смогу тебя понять только на английском.');
 
         const {
             message: { text }

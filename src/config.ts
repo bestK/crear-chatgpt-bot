@@ -33,7 +33,7 @@ const configSchema = z.object({
     }, z.array(z.enum(updates))),
     BOT_WEBHOOK_SECRET: z.string(),
     BOT_TOKEN: z.string(),
-    BOT_WEBHOOK: z.string().url()
+    BOT_WEBHOOK: z.string().optional()
 });
 
 const parseConfig = (env: NodeJS.ProcessEnv) => {

@@ -11,7 +11,7 @@ export const translationConversation = (container: Container) =>
         await conversation.run(i18n());
 
         await ctx.replyWithChatAction('typing');
-        await ctx.reply('Напиши текст, который надо перевести с RU на EN');
+        // await ctx.reply('Напиши текст, который надо перевести с RU на EN');
 
         const {
             message: { text }
@@ -21,12 +21,12 @@ export const translationConversation = (container: Container) =>
             {
                 role: 'system',
                 content: `
-        You are a helpful translator, you will help to translate the user's text to English, only return the translated text, do not markup the answer. Don't change the punctuation. Do not translate code blocks or links.
+        You are a helpful translator, you will help to translate the user's text to Chinese, only return the translated text, do not markup the answer. Don't change the punctuation. Do not translate code blocks or links.
         `
             },
             {
                 role: 'user',
-                content: `Translate the following markdown text: \\n\\n ${text}`
+                content: `${text}`
             }
         ];
 

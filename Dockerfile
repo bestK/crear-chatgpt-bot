@@ -8,7 +8,8 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY package*.json package-lock.json ./
+COPY package.json package-lock.json ./
+COPY locales ./locales
 
 RUN npm ci --production=true --frozen-lockfile \
   && cp -R node_modules prod_node_modules \
@@ -21,8 +22,10 @@ WORKDIR /app
 
 COPY . .
 COPY --from=dependencies /app/node_modules ./node_modules
+COPY --from=dependencies /app/package.json ./package.json
 
-RUN npm run build
+
+RUN  npm run build
 
 ###################################################
 FROM ${BASE} AS runner
@@ -30,10 +33,12 @@ FROM ${BASE} AS runner
 WORKDIR /app
 
 COPY --from=dependencies /app/prod_node_modules ./node_modules
-COPY --from=builder /app/dist .
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./package.json
+COPY --from=dependencies /app/locales ./locales
 
 USER node
 
 # Start the app
 EXPOSE 80
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start"]

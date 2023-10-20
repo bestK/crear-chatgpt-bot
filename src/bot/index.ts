@@ -2,10 +2,10 @@ import { autoChatAction } from '@grammyjs/auto-chat-action';
 import { conversations } from '@grammyjs/conversations';
 import { hydrate } from '@grammyjs/hydrate';
 import { hydrateReply, parseMode } from '@grammyjs/parse-mode';
-import { Bot as TelegramBot, BotConfig, session, StorageAdapter } from 'grammy';
+import { BotConfig, StorageAdapter, Bot as TelegramBot, session } from 'grammy';
 
 import { drawCommand, questionCommand, startCommand, translationCommand } from '@/bot/commands';
-import { Context, createContextConstructor, SessionData } from '@/bot/context';
+import { Context, SessionData, createContextConstructor } from '@/bot/context';
 import { drawConversation } from '@/bot/conversations/draw.conversation';
 import { questionToOpenaiConversation } from '@/bot/conversations/question.openai';
 import { translationConversation } from '@/bot/conversations/translation.conversation';
@@ -40,7 +40,7 @@ export const createBot = (
         { command: 'start', description: 'Start the bot' },
         { command: 'question', description: 'Ask question OpenAI' },
         { command: 'draw', description: 'Draw images' },
-        { command: 'translation', description: 'Перевод с RU на EN' }
+        { command: 'translation', description: 'Translation' }
     ]);
 
     if (config.isDev) {

@@ -8,7 +8,7 @@ export const questionToOpenaiConversation = (container: Container) =>
     createConversation(async (conversation: Conversation<Context>, ctx: Context) => {
         await ctx.replyWithChatAction('typing');
 
-        await ctx.reply('Задай вопрос');
+        // await ctx.reply('Задай вопрос');
 
         const {
             message: { text }
